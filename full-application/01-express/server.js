@@ -3,7 +3,9 @@
 //How to create an express server
 
 var http = require("http"),
-	express = require("express");
+	express = require("express"),
+	socketIo = require("socket.io");
+
 
 const app = express();
 app.set("view engine", "jade");
@@ -41,6 +43,8 @@ app.get("/home", (request, response) => {
 });
 
 const server = new http.Server(app);
+//Initialize socket.io with our http server
+const io = socketIo(server);
 
 const port = 3000;
 
